@@ -52,5 +52,12 @@ class NumbersTestCase(unittest.TestCase):
         self.assertEqual(tile_cost(2,2,1), 4)	
         self.assertEqual(tile_cost(2,2,2), 8)	
 
+#    def test_mortgage(self):
+#        self.assertEqual(tile_cost(0,0,0), 0)
+#        self.assertEqual(tile_cost(1,1,1), 1)	
+#        self.assertEqual(tile_cost(1,2,1), 2)	
+#        self.assertEqual(tile_cost(2,2,1), 4)	
+#        self.assertEqual(tile_cost(2,2,2), 8)	
+
 if __name__ == '__main__':
     unittest.main()

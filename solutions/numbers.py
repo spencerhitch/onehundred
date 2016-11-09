@@ -2,6 +2,7 @@
 # Which is just the taylor series approximation of 
 # artcan(1) which is of course pi/4
 def find_pi_to_the_nth(n):
+    n = int(n)
     estimate = 1 
     for k in range(1,10**n):
        estimate = estimate + (-1)**k * 1/(k*2 + 1)
@@ -10,6 +11,7 @@ def find_pi_to_the_nth(n):
     return estimate
 
 def find_e_to_the_nth(n):
+    n = int(n)
     k = 10**n
     estimate = (1 + 1/k)**k
     estimate = float(str(estimate)[0:n+1])
@@ -40,6 +42,10 @@ def next_prime():
 
 def tile_cost(w,h,c):
     return w*h*c
+
+def mortgage(n,rate):
+    return w*h*c
+
 
 functions_index = [
         find_pi_to_the_nth, 

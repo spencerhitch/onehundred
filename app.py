@@ -21,9 +21,10 @@ def pset(pset_index):
 @app.route('/problem')
 def problem():
   inputs = [] 
-  index = request.args.get('index',0,type=str) 
+  index = request.args.get('index','',type=str) 
   function = functions_index[int(index)] 
-  try:
-      inputs.append(request.args.get('inp',0,type=str))
+  if request.args.get('inp','',type=str):
+      inputs = request.args.get('inp','',type=str).split(",")
+      inputs = list(map(lambda x: float(x), inputs))
   result = function(*inputs)
   return jsonify(result=result)
