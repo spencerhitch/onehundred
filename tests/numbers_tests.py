@@ -1,0 +1,56 @@
+import unittest
+from onehundred.solutions.numbers import *
+
+
+class NumbersTestCase(unittest.TestCase):
+
+    def test_find_pi_to_the_nth(self):
+        self.assertEqual(find_pi_to_the_nth(1), 3)	
+        self.assertEqual(find_pi_to_the_nth(2), 3.1)	
+        self.assertEqual(find_pi_to_the_nth(3), 3.14)	
+        self.assertEqual(find_pi_to_the_nth(4), 3.141)	
+        self.assertEqual(find_pi_to_the_nth(5), 3.1415)	
+        self.assertEqual(find_pi_to_the_nth(6), 3.14159)	
+#        self.assertEqual(find_pi_to_the_nth(7), 3.141592)	
+#        self.assertEqual(find_pi_to_the_nth(8), 3.1415926)
+#        self.assertEqual(find_pi_to_the_nth(10), 3.141592653)
+
+    def test_find_e_to_the_nth(self):
+        e = 2.7182818284590452353602874713527
+        self.assertEqual(find_e_to_the_nth(1), float(str(e)[0:1]))	
+        self.assertEqual(find_e_to_the_nth(2), float(str(e)[0:3]))	
+        self.assertEqual(find_e_to_the_nth(3), float(str(e)[0:4]))	
+        self.assertEqual(find_e_to_the_nth(4), float(str(e)[0:5]))	
+        self.assertEqual(find_e_to_the_nth(5), float(str(e)[0:6]))	
+        self.assertEqual(find_e_to_the_nth(6), float(str(e)[0:7]))	
+#        self.assertEqual(find_pi_to_the_nth(10), 3.141592653)
+
+    def test_nth_fibonacci_number(self):
+        fib = [1,1,2,3,5,8,13,21,34,55,89]
+        self.assertEqual(nth_fibonacci_number(1), fib[1])	
+        self.assertEqual(nth_fibonacci_number(2), fib[2])	
+        self.assertEqual(nth_fibonacci_number(3), fib[3])	
+        self.assertEqual(nth_fibonacci_number(4), fib[4])	
+        self.assertEqual(nth_fibonacci_number(5), fib[5])	
+        self.assertEqual(nth_fibonacci_number(6), fib[6])	
+
+    def test_prime_factorization(self):
+        self.assertEqual(prime_factorization(2), "2")	
+        self.assertEqual(prime_factorization(4), "2, 2")	
+        self.assertEqual(prime_factorization(6), "2, 3")	
+        self.assertEqual(prime_factorization(36), "2, 2, 3, 3")	
+
+    def test_next_prime(self):
+        self.assertEqual(next_prime(), 2)
+        self.assertEqual(next_prime(), 3)	
+        self.assertEqual(next_prime(), 5)	
+
+    def test_tile_cost(self):
+        self.assertEqual(tile_cost(0,0,0), 0)
+        self.assertEqual(tile_cost(1,1,1), 1)	
+        self.assertEqual(tile_cost(1,2,1), 2)	
+        self.assertEqual(tile_cost(2,2,1), 4)	
+        self.assertEqual(tile_cost(2,2,2), 8)	
+
+if __name__ == '__main__':
+    unittest.main()
