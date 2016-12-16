@@ -52,12 +52,25 @@ class NumbersTestCase(unittest.TestCase):
         self.assertEqual(tile_cost(2,2,1), 4)	
         self.assertEqual(tile_cost(2,2,2), 8)	
 
-#    def test_mortgage(self):
-#        self.assertEqual(tile_cost(0,0,0), 0)
-#        self.assertEqual(tile_cost(1,1,1), 1)	
-#        self.assertEqual(tile_cost(1,2,1), 2)	
-#        self.assertEqual(tile_cost(2,2,1), 4)	
-#        self.assertEqual(tile_cost(2,2,2), 8)	
+    def test_mortgage(self):
+        self.assertEqual(mortgage(100000,30,3.92), '$473/month')
+        self.assertEqual(mortgage(200000,30,3.92), '$946/month')
+        self.assertEqual(mortgage(1000000,30,3.92), '$4728/month')
+
+    def test_change_return(self):
+        self.assertEqual(change_return(10.50,20), "9 bills, 2 quarters, 0 dimes, 0 nickels, and 0 pennies")
+        self.assertEqual(change_return(11.27,20), "8 bills, 2 quarters, 2 dimes, 0 nickels, and 3 pennies")
+        self.assertEqual(change_return(6.33,20), "13 bills, 2 quarters, 1 dimes, 1 nickels, and 2 pennies")
+
+    def test_binary_to_decimal(self):
+        self.assertEqual(binary_to_decimal('0'), '0')
+        self.assertEqual(binary_to_decimal('10'), '2')
+        self.assertEqual(binary_to_decimal('101'), '5')
+
+    def test_decimal_to_binary(self):
+        self.assertEqual(decimal_to_binary('0'), '0')
+        self.assertEqual(decimal_to_binary('10'), '1010')
+        self.assertEqual(decimal_to_binary('101'), '1100101')
 
 if __name__ == '__main__':
     unittest.main()

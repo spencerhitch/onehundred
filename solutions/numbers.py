@@ -1,3 +1,5 @@
+import math
+
 # Using the Gregory-Leibniz Series formula for pi
 # Which is just the taylor series approximation of 
 # artcan(1) which is of course pi/4
@@ -43,8 +45,43 @@ def next_prime():
 def tile_cost(w,h,c):
     return w*h*c
 
-def mortgage(n,rate):
-    return w*h*c
+def mortgage(principal,period,i):
+    r = i/12/100
+    n  = period*12
+    monthly = principal * (r*(r+1)**n / ((1+r)**n - 1))
+    return "$" + str(int(round(monthly))) + "/month"
+
+def change_return(cost, tender):
+    change = tender - cost
+    bills = math.floor(change)
+    change = int((change - bills) * 100)
+    purse = [bills, 0,0,0,0]
+
+    def coins(change):
+        if change == 0:
+            return
+        elif change >= 25:
+            purse[1] += 1
+            return coins(change - 25)
+        elif change >= 10:
+            purse[2] += 1
+            return coins(change - 10)
+        elif change >= 5:
+            purse[3] += 1
+            return coins(change - 5)
+        elif change >= 1:
+            purse[4] += 1
+            return coins(change - 1)
+
+    coins(change)
+    result = "{0} bills, {1} quarters, {2} dimes, {3} nickels, and {4} pennies".format(*purse)
+    return result
+
+def binary_to_decimal(b):
+    return str(int(b,2))
+
+def decimal_to_binary(b):
+    return str(bin(int(b)))[2:]
 
 
 functions_index = [
@@ -53,5 +90,7 @@ functions_index = [
         nth_fibonacci_number,
         prime_factorization,
         next_prime,
-        tile_cost
+        tile_cost,
+        mortgage,
+        change_return
         ]
