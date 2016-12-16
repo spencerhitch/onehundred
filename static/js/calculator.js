@@ -1,10 +1,3 @@
-//
-//Add listeners for each of the button types
-//attach listeners to methods
-//create calculator object
-//
-
-// Define a log function
 var Calculator = function(inputs, output){
   var self = this;
   this.result;
@@ -19,7 +12,7 @@ var Calculator = function(inputs, output){
   // Set content of output to result
   $(this.output).text(this.display);
 
-  // Add click listeners
+  // Add click listener for numbers
   $(this.inputs).find(".num").click(function(){
     var numValue =  $(this).attr("value");
     self.numberInput(numValue);
@@ -31,10 +24,13 @@ var Calculator = function(inputs, output){
   });
 
   $(this.inputs).find(".op1").click(function(){
-    var opValue =  $(this).attr("value");
     self.operator1(opValue);
   });
-  
+
+  $(this.inputs).find(".equals").click(function(){
+    console.log("hitting equals.");
+    self.equals();
+  });
 }
 
 Calculator.prototype = {
@@ -61,6 +57,11 @@ Calculator.prototype = {
         this.updateOutput();
         this.newInput = true;
         break;
+      case 1:
+        this.computeQueue.push(op);
+        this.display = "0";
+        this.updateOutput();
+        this.newInput = true;
       case 2:
         if (this.newInput){
           this.computeQueue[1] = op;
@@ -139,5 +140,19 @@ Calculator.prototype = {
     this.display = this.result.toString();
     this.updateOutput();
     this.newInput = true;
+  },
+  equals(){
+    switch(this.computeQueue.length) {
+      case 0:
+        break;
+      case 2:
+        this.computeQueue.push(parseInt(this.display));
+        this.compute2();
+        this.computeQueue.push(this.result);
+        break;
+      default:
+        break;
+    }
+    
   }
 }
