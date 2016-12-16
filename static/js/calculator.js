@@ -24,12 +24,21 @@ var Calculator = function(inputs, output){
   });
 
   $(this.inputs).find(".op1").click(function(){
+    var opValue =  $(this).attr("value");
     self.operator1(opValue);
   });
 
   $(this.inputs).find(".equals").click(function(){
-    console.log("hitting equals.");
     self.equals();
+  });
+
+  $(this.inputs).find(".mod").click(function(){
+    var opValue =  $(this).attr("value");
+    if (opValue == "negate"){
+      self.negate();
+    } else if (opValue == "float"){
+      self.toFloat();
+    }
   });
 }
 
@@ -153,6 +162,19 @@ Calculator.prototype = {
       default:
         break;
     }
-    
+  },
+  negate(){
+    if (this.display[0] != "-"){
+      this.display = "-" + this.display;
+    } else {
+      this.display = this.display.substring(1);
+    }
+    this.updateOutput();
+  },
+  toFloat(){
+    if (! this.display.includes(".")){  
+      this.display += "."
+    }
+    this.updateOutput();
   }
 }
