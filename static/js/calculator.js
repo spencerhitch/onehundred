@@ -25,9 +25,14 @@ var Calculator = function(inputs, output){
     self.numberInput(numValue);
   });
 
-  $(this.inputs).find(".op").click(function(){
+  $(this.inputs).find(".op2").click(function(){
     var opValue =  $(this).attr("value");
-    self.operator(opValue);
+    self.operator2(opValue);
+  });
+
+  $(this.inputs).find(".op1").click(function(){
+    var opValue =  $(this).attr("value");
+    self.operator1(opValue);
   });
   
 }
@@ -47,7 +52,7 @@ Calculator.prototype = {
     }
     this.updateOutput();
   },
-  operator(op) {
+  operator2(op) {
     switch(this.computeQueue.length) {
       case 0:
         this.computeQueue.push(parseInt(this.display));
@@ -61,7 +66,7 @@ Calculator.prototype = {
           this.computeQueue[1] = op;
         } else{
           this.computeQueue.push(parseInt(this.display));
-          this.compute();
+          this.compute2();
           this.computeQueue.push(this.result);
           this.computeQueue.push(op);
         }
@@ -70,7 +75,7 @@ Calculator.prototype = {
         break;
     }
   },
-  compute(){
+  compute2(){
     var operand2 = this.computeQueue.pop();
     var operatorFunction = this.selectOperator(this.computeQueue.pop());
     var operand1 = this.computeQueue.pop();
@@ -93,6 +98,46 @@ Calculator.prototype = {
       case "div":
         return function(op1, op2){return op1 / op2}
         break;
+      case "sqrt":
+        return function(op1){return Math.sqrt(op1)}
+        break;
+      case "percent":
+        return function(op1){return op1 / 100}
+        break;
+      default:
+        console.log("didn't find a match: " + op);
+        break;
     }
+  },
+  operator1(op) {
+    switch(this.computeQueue.length) {
+      case 0:
+        this.computeQueue.push(parseInt(this.display));
+        this.computeQueue.push(op);
+        this.compute1();
+        this.computeQueue.push(this.result);
+        break;
+      case 1:
+        this.computeQueue.push(op);
+        this.compute1();
+        this.computeQueue.push(this.result);
+        break;
+      case 2:
+        this.computeQueue[1] = op;
+        this.compute1();
+        this.computeQueue.push(this.result);
+        break;
+      default:
+        break;
+    }
+  },
+  compute1(){
+    var operator = this.computeQueue.pop();
+    var operand = this.computeQueue.pop();
+    var operatorFunction = this.selectOperator(operator);
+    this.result = operatorFunction(operand);
+    this.display = this.result.toString();
+    this.updateOutput();
+    this.newInput = true;
   }
 }
