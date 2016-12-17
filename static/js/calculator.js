@@ -1,10 +1,12 @@
 var Calculator = function(inputs, output){
   var self = this;
   this.result;
+  this.memory = 0;
   this.display = "0";
   this.inputs = inputs;
   this.output = output;
   this.newInput = true;
+  this.recentEqualsCall = false;
 
   //Instantiate empty computeQueue
   this.computeQueue = [];
@@ -40,6 +42,26 @@ var Calculator = function(inputs, output){
       self.toFloat();
     }
   });
+
+  $(this.inputs).find(".clear").click(function(){
+    self.clear();
+  });
+
+  $(this.inputs).find(".mem").click(function(){
+    var opValue =  $(this).attr("value");
+    if (opValue == "add"){
+      self.memAdd();
+    } else if (opValue == "sub"){
+      self.memSub();
+    } else if (opValue == "recall"){
+      self.memRecall();
+    } else if (opValue == "clear"){
+      self.memClear();
+    }
+  });
+
+  // Clear
+  //  memory functions
 }
 
 Calculator.prototype = {
@@ -49,6 +71,10 @@ Calculator.prototype = {
     $(this.output).text(this.display);
   },
   numberInput(n) {
+    if (this.recentEqualsCall){
+      this.computeQueue =  [];
+      this.recentEqualsCall = false;
+    }
     if (this.newInput){
       this.display = n.toString();
       this.newInput = false;
@@ -58,6 +84,9 @@ Calculator.prototype = {
     this.updateOutput();
   },
   operator2(op) {
+    if (this.recentEqualsCall){
+      this.recentEqualsCall = false;
+    }
     switch(this.computeQueue.length) {
       case 0:
         this.computeQueue.push(parseInt(this.display));
@@ -120,6 +149,9 @@ Calculator.prototype = {
     }
   },
   operator1(op) {
+    if (this.recentEqualsCall){
+      this.recentEqualsCall = false;
+    }
     switch(this.computeQueue.length) {
       case 0:
         this.computeQueue.push(parseInt(this.display));
@@ -158,6 +190,7 @@ Calculator.prototype = {
         this.computeQueue.push(parseInt(this.display));
         this.compute2();
         this.computeQueue.push(this.result);
+        this.recentEqualsCall = true;
         break;
       default:
         break;
@@ -176,5 +209,24 @@ Calculator.prototype = {
       this.display += "."
     }
     this.updateOutput();
+  },
+  memClear(){
+    this.memory = 0;
+  },
+  memRecall(){
+    this.display = this.memory.toString();
+    this.updateOutput();
+  },
+  memAdd(){
+    this.memory += parseInt(this.display);
+  },
+  memSub(){
+    this.memory -= parseInt(this.display);
+  },
+  clear(){
+    this.computeQueue = [];
+    this.display = "0";
+    this.updateOutput();
+    this.newInput = true;
   }
 }
