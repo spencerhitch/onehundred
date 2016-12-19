@@ -68,9 +68,9 @@ class NumbersTestCase(unittest.TestCase):
         self.assertEqual(binary_to_decimal('101'), '5')
 
     def test_decimal_to_binary(self):
-        self.assertEqual(decimal_to_binary('0'), '0')
-        self.assertEqual(decimal_to_binary('10'), '1010')
-        self.assertEqual(decimal_to_binary('101'), '1100101')
+        self.assertEqual(int(decimal_to_binary('0'), 2), int('0', 2))
+        self.assertEqual(int(decimal_to_binary('10'), 2), int('1010', 2))
+        self.assertEqual(int(decimal_to_binary('101'), 2), int('1100101', 2))
 
 if __name__ == '__main__':
     unittest.main()

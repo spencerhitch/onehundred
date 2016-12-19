@@ -78,10 +78,17 @@ def change_return(cost, tender):
     return result
 
 def binary_to_decimal(b):
-    return str(int(b,2))
+    return str(sum((ord(c)-48)*2**i for i,c in enumerate(b[::-1])))
 
 def decimal_to_binary(b):
-    return str(bin(int(b)))[2:]
+    b_int = int(b)
+    res = ""
+    for i in range(32):
+        if (2**(31 - i) & b_int != 0):
+            res = res+"1"
+        else:
+            res = res+"0"
+    return res
 
 
 functions_index = [
