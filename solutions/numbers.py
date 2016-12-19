@@ -77,9 +77,6 @@ def change_return(cost, tender):
     result = "{0} bills, {1} quarters, {2} dimes, {3} nickels, and {4} pennies".format(*purse)
     return result
 
-def binary_to_decimal(b):
-    return str(sum((ord(c)-48)*2**i for i,c in enumerate(b[::-1])))
-
 def decimal_to_binary(b):
     b_int = int(b)
     res = ""
@@ -90,6 +87,11 @@ def decimal_to_binary(b):
             res = res+"0"
     return res
 
+def binary_to_decimal(b):
+    sb = str(b)
+    return str(sum((ord(c)-48)*2**i for i,c in enumerate(sb[::-1])))
+
+
 
 functions_index = [
         find_pi_to_the_nth, 
@@ -99,5 +101,7 @@ functions_index = [
         next_prime,
         tile_cost,
         mortgage,
-        change_return
+        change_return,
+        decimal_to_binary,
+        binary_to_decimal
         ]
