@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %} Index {% endblock %}
+{% block content %}
+
+  <div class="container">
+    <div class="row intro">
+      <div class="one-half column">
+        <h4>100 Programming Projects</h4>
+        <p>An exercise test driven development towards full-stack programming 
+        within a web framework. A fully responsive webpage exploring and allowing 
+        a visitor to interact with solutions to <a 
+        href="https://github.com/karan/Projects"> 100 programming projects </a>. 
+        Built in <a href="http://flask.pocoo.org/">Flask</a> with help from 
+        <a href="http://getskeleton.com/">Skeleton</a></p>
+      </div>
+      <div class="one-half column">
+        <ul class="table_of_contents">
+        {% for pset in projects %}
+          <li><a href="pset/{{ loop.index0 }}">{{ pset.subject }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

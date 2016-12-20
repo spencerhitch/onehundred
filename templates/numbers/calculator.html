@@ -1,0 +1,45 @@
+<p id="output"></p>
+<table id="inputs">
+  <tr>
+    <td class="mem" value="add">M+</td>
+    <td class="mem" value="sub">M-</td>
+    <td class="mem" value="recall">MR</td>
+    <td class="mem" value="clear">MC</td>
+    <td class="mod" value="negate">+/-</td>
+  </tr>
+  <tr>
+    <td class="op1">∆%</td>
+    <td class="num" value="7">7</td>
+    <td class="num" value="8">8</td>
+    <td class="num" value="9">9</td>
+    <td class="op2" value="div">÷</td>
+  </tr>
+  <tr>
+    <td class="op1" value="sqrt">√</td>
+    <td class="num" value="4">4</td>
+    <td class="num" value="5">5</td>
+    <td class="num" value="6">6</td>
+    <td class="op2" value="mul">x</td>
+  </tr>
+  <tr>
+    <td class="op1" value="percent">%</td>
+    <td class="num" value="1">1</td>
+    <td class="num" value="2">2</td>
+    <td class="num" value="3">3</td>
+    <td class="op2" value="sub">-</td>
+  </tr>
+  <tr>
+    <td class="clear">AC</td>
+    <td class="num" value="0">0</td>
+    <td class="mod" value="float">.</td>
+    <td class="equals" value="eq">=</td>
+    <td class="op2" value="add">+</td>
+  </tr>
+</table>
+
+<script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
+<script>
+$(document).ready(function() {
+  var calculator = new Calculator($("#inputs"), $("#output"));
+});
+</script>

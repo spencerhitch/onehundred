@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %} {{ pset.subject }} {% endblock %}
+{% block content %}
+
+  <div class="container">
+    <div class="row intro">
+      <div class="one-half column">
+        <h4>{{ pset.subject }}</h4>
+        <p>Description will eventually go here</p>
+      </div>
+      <div class="one-half column">
+        <ul class="table_of_contents">
+        {% for problem in pset.problems %}
+          <li><a href="#p{{ loop.index0 }}"> {{ problem.title }} </a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% for problem in pset.problems %}
+      <div class="row" id="p{{ loop.index0 }}">
+        <h5>{{ problem.title }}</h5>
+        <p>{{ problem.description }}</p>
+      </div>
+      {% if problem.form %}
+        <form id="form{{ loop.index0 }}">
+          {% for input in problem.form %}
+            <input {{ input }} >
+          {% endfor %}
+        </form>
+        <p class="result" id="result{{ loop.index0 }}"></p>
+      {% elif problem.template %}
+        {% include problem.template %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+{% endblock %}
+{% block js%}
+  <script src="{{ url_for('static', filename='js/pset.js') }}"></script>
+{% endblock %}
