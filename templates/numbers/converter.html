@@ -30,4 +30,22 @@
       </select>
     </td>
   </tr>
+  <tr>
+    <td>Result:</td>
+    <td id="result"></td>
+    <td id="submit"><button type="submit">Submit</button></td>
+  </tr>
 </table>
+
+<script src="{{ url_for('static', filename='js/converter.js') }}"></script>
+<script>
+$(document).ready(function() {
+  var converter = new Converter(
+    $(".type"),
+    $(".value"), 
+    $(".from"), 
+    $(".to"),
+    $("#result")
+  );
+});
+</script>
