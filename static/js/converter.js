@@ -82,9 +82,19 @@ Converter.prototype = {
     var type = $(this.type).find(":selected").attr("value");
     var from = $(this.from).find(":selected").val();
     var to = $(this.to).find(":selected").val();
-    var num = this.unitsTable[type][to];
-    var denom = this.unitsTable[type][from];
-    var result =  parseInt($(this.value).val())  *  num / denom;
+    var value = $(this.value).val()
+    var result;
+    if (type == "temp"){
+      if (from == "fahrenheit"){
+        result = (value - 32) * 5/9;
+      } else {
+        result = value * 9/5 + 32;
+      }
+    } else {
+      var num = this.unitsTable[type][to];
+      var denom = this.unitsTable[type][from];
+      result =  parseInt(value)  *  num / denom;
+    }
     console.log("RESULT: ", result);
     $(this.result).text(result.toString()); 
   }
