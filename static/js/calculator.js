@@ -1,53 +1,65 @@
-var Calculator = function(inputs, output){
+// Add $s in front of JQuery variables
+// Shouldn't need the find operations
+
+var Calculator = function($inputs, $output){
   var self = this;
   this.result;
   this.memory = 0;
   this.display = "0";
-  this.inputs = inputs;
-  this.output = output;
+  this.$inputs = $inputs;
+  this.$output = $output;
   this.newInput = true;
   this.recentEqualsCall = false;
 
   //Instantiate empty computeQueue
   this.computeQueue = [];
   
-  // Set content of output to result
-  $(this.output).text(this.display);
+  // Set content of $output to result
+  this.$output.text(this.display);
 
   // Add click listener for numbers
-  $(this.inputs).find(".num").click(function(){
+  this.$inputs
+    .on("click", ".num", numClick)
+    .on("click", ".op2", op2Click)
+    .on("click", ".op1", op1Click)
+    .on("click", ".equals", equalsClick)
+    .on("click", ".mod", modClick)
+    .on("click", ".clear", clearClick)
+    .on("click", ".mem", memClick);
+
+  function numClick() {
     var numValue =  $(this).attr("value");
     self.numberInput(numValue);
-  });
+  };
 
-  $(this.inputs).find(".op2").click(function(){
+  function op2Click(){
     var opValue =  $(this).attr("value");
     self.operator2(opValue);
-  });
+  };
 
-  $(this.inputs).find(".op1").click(function(){
+  function op1Click(){
     var opValue =  $(this).attr("value");
     self.operator1(opValue);
-  });
+  };
 
-  $(this.inputs).find(".equals").click(function(){
+  function equalsClick(){
     self.equals();
-  });
+  };
 
-  $(this.inputs).find(".mod").click(function(){
+  function modClick(){
     var opValue =  $(this).attr("value");
     if (opValue == "negate"){
       self.negate();
     } else if (opValue == "float"){
       self.toFloat();
     }
-  });
+  };
 
-  $(this.inputs).find(".clear").click(function(){
+  function clearClick(){
     self.clear();
-  });
+  };
 
-  $(this.inputs).find(".mem").click(function(){
+  function memClick(){
     var opValue =  $(this).attr("value");
     if (opValue == "add"){
       self.memAdd();
@@ -58,17 +70,13 @@ var Calculator = function(inputs, output){
     } else if (opValue == "clear"){
       self.memClear();
     }
-  });
-
-  // Clear
-  //  memory functions
-}
+  };
+};
 
 Calculator.prototype = {
-  constructor: Calculator,
   // methods of operation
   updateOutput(){
-    $(this.output).text(this.display);
+    $(this.$output).text(this.display);
   },
   numberInput(n) {
     if (this.recentEqualsCall){
@@ -126,22 +134,22 @@ Calculator.prototype = {
   selectOperator(op){
     switch(op){
       case "add":
-        return function(op1, op2){return op1 + op2}
+        return function(op1, op2){return op1 + op2};
         break;
       case "sub":
-        return function(op1, op2){return op1 - op2}
+        return function(op1, op2){return op1 - op2};
         break;
       case "mul":
-        return function(op1, op2){return op1 * op2}
+        return function(op1, op2){return op1 * op2};
         break;
       case "div":
-        return function(op1, op2){return op1 / op2}
+        return function(op1, op2){return op1 / op2};
         break;
       case "sqrt":
-        return function(op1){return Math.sqrt(op1)}
+        return function(op1){return Math.sqrt(op1)};
         break;
       case "percent":
-        return function(op1){return op1 / 100}
+        return function(op1){return op1 / 100};
         break;
       default:
         console.log("didn't find a match: " + op);
