@@ -1,10 +1,10 @@
 <table>
-  <tr>
+  <tr class="stopwatch">
     <th>Stopwatch</th>
-    <td><input></td>
-    <td><button>Start</button></td> 
+    <td><input id="stopwatch_inp"></td>
+    <td><button id="stopwatch_btn">Start</button></td> 
   </tr>
-  <tr>
+  <tr class="alarm">
     <th>Alarm</th>
     <td><input></td>
     <td><button>Add</button></td> 
@@ -14,7 +14,6 @@
 <script src="{{ url_for('static', filename='js/alarm.js') }}"></script>
 <script>
 $(document).ready(function() {
-  var alarm = new Alarm(
-  );
+  var alarm = new Alarm($(".stopwatch"), $(".alarm"));
 });
 </script>
