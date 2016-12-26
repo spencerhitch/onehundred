@@ -1,11 +1,14 @@
 // An Alarm Clock in Javascript
 
-var Alarm = function(stopwatch, alarm){
+var Alarm = function(timer, alarm){
   var self = this;
-  this.stopwatch = stopwatch;
+  this.timer = timer;
 
-  this.stopwatch.on("click", "#stopwatch_btn", function(){
-    console.log($("#stopwatch_inp").val());
+  this.timer.on("click", "#timer_btn", function(){
+    var time = $("#timer_inp").val();
+    setTimeout(function(){
+      alert("Time is up!");
+    }, time * 1000);
   });
 }
 
