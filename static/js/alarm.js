@@ -7,6 +7,7 @@ var Alarm = function(timer, alarm){
   this.timer.on("click", "#timer_btn", function(){
     var time = $("#timer_inp").val();
     setTimeout(function(){
+     document.getElementById("alarm").play();
       alert("Time is up!");
     }, time * 1000);
   });
