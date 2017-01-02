@@ -4,3 +4,11 @@
 .row p{
   font-size:15px;
 }
+
+#alarm_stop{
+  display:none;
+}
+
+#timer_stop{
+  display:none;
+}

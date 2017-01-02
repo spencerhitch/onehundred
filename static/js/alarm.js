@@ -6,11 +6,16 @@ var Alarm = function(timer, alarm){
   this.alarm = alarm;
 
   this.timer.on("click", "#timer_btn", function(){
-    var time = $("#timer_inp");
+    var time = $("#timer_inp").val();
     console.log("Time: ", time);
     setTimeout(function(){
-       document.getElementById("alarm").play();
-       alert("Time is up!");
+      var alarm = document.getElementById("alarm");
+      alarm.play();
+      $("#timer_stop").toggle().on("click", function(){
+        alarm.pause();
+        alarm.currentTime = 0;
+        $("#timer_stop").toggle();
+      });
     }, time * 1000);
   });
 
@@ -25,8 +30,13 @@ var Alarm = function(timer, alarm){
       ;
     console.log("alarm_time: ", alarm_time);
     setTimeout(function(){
-     document.getElementById("alarm").play();
-      alert("Time is up!");
+      var alarm = document.getElementById("alarm");
+      alarm.play();
+      $("#alarm_stop").toggle().on("click", function(){
+        alarm.pause();
+        alarm.currentTime = 0;
+        $("#alarm_stop").toggle();
+      });
     }, alarm_time * 1000);
   });
 }
