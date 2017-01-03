@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>Card Type</th>
+    <th>Card Number</th>
+  </tr>
+  <tr>
+    <td><select id="card_type"></select></td>
+    <td><input type="number" id="card_number"></td>
+    <td><button id="validate_card">Validate</button></td>
+  </tr>
+  <tr>
+    <td>Result: </td>
+    <td id="card_valudation_result"></td>
+    <td></td>
+  </tr>
+</table>
+
+<script src="{{ url_for('static', filename='js/card_validator.js') }}"></script>
+<script>
+$(document).ready(function() {
+  var card_validator = new CardValidator();
+});
+</script>
