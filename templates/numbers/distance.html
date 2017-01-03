@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <th>City 1</th>
+    <th>City2</th>
+  </tr>
+  <tr>
+    <td><input class="typeahead" type="text" id="city1_inp"></td>
+    <td><input class="typeahead" type="text" id="city2_inp"></td>
+    <td><button id="calculate">Calculate</button></td>
+  </tr>
+    <td>Distance: </td>
+    <td id="result"></td>
+    <td></td>
+</table>
+
+<script src="{{ url_for('static', filename='js/deps/typeahead.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='js/distance.js') }}"></script>
+<script>
+$(document).ready(function() {
+  var distance = new Distance($("#city1_inp"), $("#city2_inp"), $("#calculate"), $("#result"));
+});
+</script>
