@@ -8,15 +8,17 @@
     <td><input class="typeahead" type="text" id="city2_inp"></td>
     <td><button id="calculate">Calculate</button></td>
   </tr>
+  <tr>
     <td>Distance: </td>
     <td id="result"></td>
     <td></td>
+  </tr>
 </table>
 
 <script src="{{ url_for('static', filename='js/deps/typeahead.bundle.js') }}"></script>
 <script src="{{ url_for('static', filename='js/distance.js') }}"></script>
 <script>
 $(document).ready(function() {
-  var distance = new Distance($("#city1_inp"), $("#city2_inp"), $("#calculate"), $("#result"));
+  var distance = new Distance($("#city1_inp"), $("#city2_inp"), $("#calculate"), $("td#result"));
 });
 </script>

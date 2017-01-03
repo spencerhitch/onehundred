@@ -55,7 +55,8 @@ var Distance = function($city1, $city2, $calculate, $result){
 
     console.log("Calculating distance from: ", from, " to: ", to);
     var distance = self.haversine(fromLat, fromLong, toLat, toLong);
-    self.$result.text(distance);
+
+    self.$result.html(distance.toString() + " miles");
   });
 
 }
@@ -78,10 +79,9 @@ Distance.prototype = {
       Math.sin(delta_lambda / 2) * Math.sin(delta_lambda / 2);
     var c = Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-    var d = R * c;
+    var d = R * c * 2;
 
-    console.log("Distance is: ", d);
-    return d; 
+    return d / 1609.34; 
   },
   toDecimalDegrees(dms){
     // W is -1 as is S
