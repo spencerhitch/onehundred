@@ -91,6 +91,9 @@ def binary_to_decimal(b):
     sb = str(b)
     return str(sum((ord(c)-48)*2**i for i,c in enumerate(sb[::-1])))
 
+def tax_calculator(c,t):
+    tax  = c * t / 100
+    return "Tax: " + str(tax) + " Total Cost: $" +  str(c + tax)
 
 
 functions_index = [
@@ -103,5 +106,11 @@ functions_index = [
         mortgage,
         change_return,
         decimal_to_binary,
-        binary_to_decimal
+        binary_to_decimal,
+        "calculator",
+        "unit_converter",
+        "alarm_clock",
+        "distance",
+        "card_validator",
+        tax_calculator
         ]
