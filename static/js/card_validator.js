@@ -42,7 +42,7 @@ CardValidator.prototype = {
      }
   },
   validate(type, number, $result) {
-    if (this.validType(type, number) && this.validNumber(number)) {
+    if (this.validType(type, number) && this.luhn(number)) {
       $result.html("Card is valid."); 
     } else {
       $result.html("Card is invalid.");
@@ -69,7 +69,7 @@ CardValidator.prototype = {
     }
     return false;
   },
-  validNumber(number) {
+  luhn(number) {
     number = number.split("").reverse().join("");
     var total = 0;
     for (i = 0; i < number.length; i++) {
@@ -82,11 +82,7 @@ CardValidator.prototype = {
         total += parseInt(number[i])
       }
     }
-    if (total % 10 == 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return total % 10 == 0)
   },
   isOddIndex(i) {
     return (i + 1) % 2 == 0
