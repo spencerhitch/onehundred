@@ -95,6 +95,11 @@ def tax_calculator(c,t):
     tax  = c * t / 100
     return "Tax: " + str(tax) + " Total Cost: $" +  str(c + tax)
 
+def factorial(n):
+    if n == 1:
+        return n
+    return n * factorial(n-1)
+
 
 functions_index = [
         find_pi_to_the_nth, 
@@ -112,5 +117,6 @@ functions_index = [
         "alarm_clock",
         "distance",
         "card_validator",
-        tax_calculator
+        tax_calculator,
+        factorial
         ]
