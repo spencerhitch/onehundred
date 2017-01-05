@@ -72,5 +72,8 @@ class NumbersTestCase(unittest.TestCase):
         self.assertEqual(int(decimal_to_binary('10'), 2), int('1010', 2))
         self.assertEqual(int(decimal_to_binary('101'), 2), int('1100101', 2))
 
+    def test_complex_algebra(self):
+        self.assertEqual(complex_algebra("(3i + 10) + (3i + 10)"), "6i + 20")
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,4 +1,4 @@
-import math
+import math, re
 
 # Using the Gregory-Leibniz Series formula for pi
 # Which is just the taylor series approximation of 
@@ -100,6 +100,12 @@ def factorial(n):
         return n
     return n * factorial(n-1)
 
+def complex_algebra(s):
+    m = re.search('\((.*)\) ([+-*/]) \((.*)\)', s)
+    operand1 = m.group(1)
+    operator = m.group(2)
+    operand2 = m.group(3)
+
 
 functions_index = [
         find_pi_to_the_nth, 
@@ -118,5 +124,6 @@ functions_index = [
         "distance",
         "card_validator",
         tax_calculator,
-        factorial
+        factorial,
+        complex_algebra
         ]
