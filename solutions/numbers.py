@@ -101,11 +101,31 @@ def factorial(n):
     return n * factorial(n-1)
 
 def complex_algebra(s):
-    m = re.search('\((.*)\) ([+-*/]) \((.*)\)', s)
+    m = re.search('\((.*)\)\s*([\+\-\*/])\s*\((.*)\)', s)
     operand1 = m.group(1)
     operator = m.group(2)
     operand2 = m.group(3)
 
+    def parseComplex(c):
+        m = re.search('\s*(-?\d+)\s*([\+\-])\s*(-?\d+i?)', c)
+        return  {"real": m.group(1), "op": m.group(2), "complex":m.group(3)}
+
+    complex1 = parseComplex(operand1)
+    complex2 = parseComplex(operand2)
+
+    def computeComplex(comp1, operator, comp2):
+        if operator == "+":
+            real = str(int(comp1["real"]) + int(comp2["real"]))
+            comp = str(int(comp1["complex"][:-1]) \
+                    + int(comp2["complex"][:-1]))+ "i" 
+            return real + " + " + comp
+        elif operator == "-":
+            real = str(int(comp1["real"]) - int(comp2["real"]))
+            comp = str(int(comp1["complex"][:-1]) \
+                    - int(comp2["complex"][:-1]))+ "i" 
+            return real + " + " + comp
+
+    return computeComplex(complex1, operator, complex2)
 
 functions_index = [
         find_pi_to_the_nth, 
