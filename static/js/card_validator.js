@@ -82,7 +82,7 @@ CardValidator.prototype = {
         total += parseInt(number[i])
       }
     }
-    return total % 10 == 0)
+    return total % 10 == 0
   },
   isOddIndex(i) {
     return (i + 1) % 2 == 0

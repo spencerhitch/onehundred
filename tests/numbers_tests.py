@@ -75,6 +75,7 @@ class NumbersTestCase(unittest.TestCase):
     def test_complex_algebra(self):
         self.assertEqual(complex_algebra("(3 + 10i) + (3 + 10i)"), "6 + 20i")
         self.assertEqual(complex_algebra("(3 + 10i) - (2 + 8i)"), "1 + 2i")
+        self.assertEqual(complex_algebra("(1 + 3i) * (3 + 10i)"), "-27 + 19i")
 
 if __name__ == '__main__':
     unittest.main()
