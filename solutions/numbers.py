@@ -126,10 +126,10 @@ def complex_algebra(s):
             return real + " + " + comp
         elif operator == "*":
             reals = int(comp1["real"]) * int(comp2["real"])
-            comp_real =  int(comp1["complex"][:-1])
+            comp_real =  int(comp1["complex"][:-1]) * int(comp2["real"])
             real_comp =  int(comp1["real"]) * int(comp2["complex"][:-1])
             comps = int(comp1["complex"][:-1]) \
-                    * int(comp2["complex"][:-1])) * -1
+                    * int(comp2["complex"][:-1]) * -1
             real = str(reals + comps)
             comp = str(comp_real + real_comp) + "i"
             return real + " + " + comp
